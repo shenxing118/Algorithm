@@ -4,11 +4,37 @@ public class Number5 {
 
     public static void main(String[] args) {
         int[] prices = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        System.out.println(longestPalindrome("aacadefcaa"));
+        System.out.println(new Number5().longestPalindrome2("a"));
     }
 
-    public static String longestPalindrome(String s) {
-        if (s.length() == 0){
+    private int start;
+    private int maxLength;
+
+    public String longestPalindrome2(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        for (int i = 0; i < s.length() - 1; i++) {
+            expand(s, i, i);
+            expand(s, i, i + 1);
+        }
+        return s.substring(start, start + maxLength);
+    }
+
+    public void expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        if (right - left - 1 > maxLength) {
+            start = left + 1;
+            maxLength = right - left - 1;
+        }
+    }
+
+
+    public String longestPalindrome(String s) {
+        if (s.length() == 0) {
             return "";
         }
         boolean[][] isPalindrome = new boolean[s.length()][s.length()];

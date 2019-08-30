@@ -7,7 +7,20 @@ public class Number3 {
 
     public static void main(String[] args) {
         Number3 number3 = new Number3();
-        System.out.println(number3.lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(number3.lengthOfLongestSubstring3("bbb"));
+    }
+
+    public int lengthOfLongestSubstring3(String s) {
+        Map<Character, Integer> posMap = new HashMap<>();
+        int max = 0, i = 0;
+        for (int j = 0; j < s.length(); j++) {
+            if (posMap.containsKey(s.charAt(j))) {
+                i = Math.max(posMap.get(s.charAt(j)) + 1, i);
+            }
+            posMap.put(s.charAt(j), j);
+            max = Math.max(max, j - i + 1);
+        }
+        return max;
     }
 
     public int lengthOfLongestSubstring(String s) {

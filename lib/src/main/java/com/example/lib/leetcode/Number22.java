@@ -6,8 +6,7 @@ import java.util.List;
 public class Number22 {
 
     public static void main(String[] args) {
-        int[] prices = new int[]{1, 2, 3};
-        print(generateParenthesis(3));
+        print(new Number22().generateParenthesis(3));
     }
 
     public static void print(List<String> lists) {
@@ -16,22 +15,23 @@ public class Number22 {
         }
     }
 
-    public static List<String> generateParenthesis(int n) {
+    public List<String> generateParenthesis(int n) {
         List<String> list = new ArrayList<>();
-        backtracking(n, list, "", 0, 0);
+        backtracking("", 0, 0, n, list);
         return list;
     }
 
-    public static void backtracking(int n, List<String> list, String string, int leftNum, int rightNumber) {
-        if (string.length() == n * 2) {
-            list.add(string);
-        } else {
-            if (leftNum < n) {
-                backtracking(n, list, string + '(', leftNum + 1, rightNumber);
-            }
-            if (rightNumber < leftNum) {
-                backtracking(n, list, string + ')', leftNum, rightNumber + 1);
-            }
+    public void backtracking(String s, int leftNum, int rightNum, int n, List<String> list) {
+        if (s.length() == n * 2) {
+            list.add(s);
+            return;
         }
+        if (leftNum < n) {
+            backtracking(s + "(", leftNum + 1, rightNum, n, list);
+        }
+        if (rightNum < leftNum) {
+            backtracking(s + ")", leftNum, rightNum + 1, n, list);
+        }
+
     }
 }

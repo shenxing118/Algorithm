@@ -7,7 +7,7 @@ public class Number69 {
     }
 
     public int mySqrt(int x) {
-        if (x == 0){
+        if (x == 0) {
             return 0;
         }
         int i = 1, j = x;

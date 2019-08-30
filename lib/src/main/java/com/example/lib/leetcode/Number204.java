@@ -8,22 +8,27 @@ public class Number204 {
     }
 
     public int countPrimes2(int n) {
-        boolean[] notPrimes = new boolean[n];
+        boolean[] isPrime = new boolean[n];
+        for (int i = 0; i < isPrime.length; i++) {
+            isPrime[i] = true;
+        }
         for (int i = 2; i * i < n; i++) {
-            if (!notPrimes[i]) {
+            if (isPrime[i]) {
                 for (int j = i * i; j < n; j += i) {
-                    notPrimes[j] = true;
+                    isPrime[j] = false;
                 }
             }
         }
+
         int count = 0;
-        for (int i = 2; i < notPrimes.length; i++) {
-            if (!notPrimes[i]) {
+        for (int i = 2; i < isPrime.length; i++) {
+            if (isPrime[i]) {
                 count++;
             }
         }
         return count;
     }
+
 
     public int countPrimes(int n) {
         int count = 0;

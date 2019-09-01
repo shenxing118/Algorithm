@@ -7,6 +7,16 @@ public class Number122 {
         System.out.println(maxProfit(prices));
     }
 
+    public static int maxProfit2(int[] prices) {
+        int max = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i] < prices[i + 1]) {
+                max += prices[i + 1] - prices[i];
+            }
+        }
+        return max;
+    }
+
     public static int maxProfit(int[] prices) {
         int max = 0;
         int peak;

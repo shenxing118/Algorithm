@@ -44,7 +44,7 @@ public class Number380 {
             if (pos.containsKey(val)) {
                 int index = pos.get(val);
 
-                int lastIndex = pos.get(nums.get(nums.size() - 1));
+                int lastIndex = nums.size() - 1;
                 if (index != lastIndex) {
                     pos.put(nums.get(nums.size() - 1), index);
                     nums.set(index, nums.get(nums.size() - 1));
